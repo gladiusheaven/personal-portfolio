@@ -49,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
           <NavLinks />
           <li>
             <a 
-              href="/resume.pdf" 
+              href="./resume.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
               download="Putranto_Pratama_Resume.pdf" 
@@ -85,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
           <NavLinks />
            <li>
             <a 
-              href="/resume.pdf" 
+              href="./resume.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
               download="Putranto_Pratama_Resume.pdf" 
