@@ -1,32 +1,30 @@
-import { GoogleGenAI } from "@google/genai";
-import { PORTFOLIO_DATA_CONTEXT } from '../constants';
-
-// FIX: Per @google/genai guidelines, check process.env.API_KEY directly instead of using a variable.
-if (!process.env.API_KEY) {
-  console.warn("API_KEY environment variable not set. AI Assistant will not work.");
-}
-
-// FIX: Per @google/genai guidelines, initialize GoogleGenAI with process.env.API_KEY directly.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export const sendMessageToGemini = async (message: string): Promise<string> => {
-  // FIX: Per @google/genai guidelines, check process.env.API_KEY directly.
-  if (!process.env.API_KEY) {
-    return "The AI assistant is currently unavailable because the API key is not configured.";
-  }
+  // The backend server is expected to be running on localhost:3001 during development.
+  const API_URL = 'http://localhost:3001/api/chat';
 
   try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: message,
-      config: {
-        systemInstruction: PORTFOLIO_DATA_CONTEXT,
-      }
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message }),
     });
-    
-    return response.text;
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Server responded with an error:", errorData);
+      return `Sorry, there was an error from the server: ${errorData.error || 'Unknown error'}`;
+    }
+
+    const data = await response.json();
+    return data.text;
   } catch (error) {
-    console.error("Gemini API error:", error);
-    throw new Error("Failed to get a response from the AI assistant.");
+    console.error("Error communicating with the backend:", error);
+    // This error often means the backend server isn't running.
+    if (error instanceof TypeError) { 
+        return "I can't seem to reach my own brain right now (the backend server). Have you started it with `npm run dev`?";
+    }
+    return "Sorry, I'm having trouble connecting right now. Please try again later.";
   }
 };

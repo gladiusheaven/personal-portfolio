@@ -10,6 +10,12 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleResumeDownload = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!window.confirm('Are you sure about to download my resume in PDF format')) {
+      event.preventDefault();
+    }
+  };
+
   const NavLinks: React.FC = () => (
     <>
       {NAV_LINKS.map((link: NavLink, index) => (
@@ -42,7 +48,14 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
         <ul className="hidden md:flex items-center space-x-4">
           <NavLinks />
           <li>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download="Putranto_Pratama_Resume.pdf" className="font-mono text-sm text-green border border-green rounded-md px-4 py-2 hover:bg-green/10 transition-colors duration-300">
+            <a 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              download="Putranto_Pratama_Resume.pdf" 
+              className="font-mono text-sm text-green border border-green rounded-md px-4 py-2 hover:bg-green/10 transition-colors duration-300"
+              onClick={handleResumeDownload}
+            >
               Resume
             </a>
           </li>
@@ -71,7 +84,14 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
         <ul className="flex flex-col items-center space-y-6 py-8">
           <NavLinks />
            <li>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download="Putranto_Pratama_Resume.pdf" className="font-mono text-sm text-green border border-green rounded-md px-12 py-3 hover:bg-green/10 transition-colors duration-300">
+            <a 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              download="Putranto_Pratama_Resume.pdf" 
+              className="font-mono text-sm text-green border border-green rounded-md px-12 py-3 hover:bg-green/10 transition-colors duration-300"
+              onClick={handleResumeDownload}
+            >
               Resume
             </a>
           </li>
