@@ -56,22 +56,558 @@
   <script type="importmap">
 {
   "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0",
     "marked": "https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.esm.js",
     "highlight.js": "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/es/highlight.min.js",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "express": "https://aistudiocdn.com/express@^5.1.0",
     "cors": "https://aistudiocdn.com/cors@^2.8.5",
-    "dotenv/": "https://aistudiocdn.com/dotenv@^17.2.3/",
-    "express": "https://aistudiocdn.com/express@^5.1.0"
+    "dotenv/": "https://aistudiocdn.com/dotenv@^17.2.3/"
   }
 }
 </script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
   <body class="bg-navy text-slate font-sans">
-    <div id="root"></div>
-    <script type="text/babel" data-type="module" src="./index.tsx"></script>
+    
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+      <nav class="container mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between h-20">
+        <div class="text-green text-2xl font-bold font-mono">
+          <a href="#">PP</a>
+        </div>
+
+        <!-- Desktop Nav -->
+        <ul id="desktop-nav-links" class="hidden md:flex items-center space-x-4">
+        </ul>
+
+        <!-- Mobile Nav Button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-green focus:outline-none">
+            <svg id="mobile-menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+            <svg id="mobile-menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden absolute top-20 left-0 w-full bg-light-navy transition-transform duration-300 ease-in-out transform -translate-y-[150%]">
+        <ul id="mobile-nav-links" class="flex flex-col items-center space-y-6 py-8">
+        </ul>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      <!-- Hero -->
+      <div class="container mx-auto px-6 md:px-12 lg:px-24">
+        <section id="hero" class="min-h-screen flex flex-col justify-center animate-fade-in-up" style="animation-delay: '100ms'">
+          <div class="max-w-4xl">
+            <p class="text-green font-mono mb-4 text-md">Hi, my name is</p>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold text-lightest-slate">Putranto Pratama.</h1>
+            <h2 class="text-4xl sm:text-6xl md:text-7xl font-bold text-slate mt-2 min-h-[5rem] sm:min-h-[8rem] md:min-h-[10rem]">
+              <span id="hero-role-text"></span>
+              <span class="animate-pulse">|</span>
+            </h2>
+             <p class="mt-8 max-w-2xl text-lg text-slate">An enterprise app and automation architect with deep expertise in full-stack development, platform integration, and intelligent automation. I design and build scalable solutions that bridge business needs with robust, user-centric technology.</p>
+            <div class="mt-12">
+              <a href="#projects" class="text-green font-mono border border-green rounded-md px-8 py-4 text-lg hover:bg-green/10 transition-colors duration-300">Check out my work!</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- About -->
+      <section id="about" class="app-section bg-light-navy relative -mt-24 z-10 min-h-[50vh] py-20 md:py-28 opacity-0">
+        <div class="container mx-auto px-6 md:px-12 lg:px-24">
+          <div class="flex items-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-lightest-slate whitespace-nowrap"><span class="text-green font-mono text-xl md:text-2xl mr-2">#</span>About Me</h2>
+            <div class="w-full h-px bg-lightest-navy ml-4"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-12">
+            <div class="md:col-span-3 text-light-slate space-y-4">
+              <p>Hello! I'm Putranto, a software engineer and automation architect with a passion for unifying fragmented workflows into seamless digital systems. My journey in tech is driven by a focus on delivering scalable, innovative solutions tailored to complex business needs.</p>
+              <p>My expertise is in full-stack development using technologies like PHP, Python, and Node.js, alongside modern low-code platforms like Microsoft Power Platform. I have led initiatives that leverage cloud-native architecture, process orchestration, and conversational AI to drive hyperautomation.</p>
+              <p>Whether I'm building custom HR applications from scratch, integrating enterprise systems like SAP, or developing AI-powered chatbots, my goal is always to create robust, secure, and user-centric solutions that make a tangible impact.</p>
+            </div>
+            <div class="md:col-span-2 flex justify-center items-start">
+              <div class="relative w-64 h-64 group">
+                <div class="absolute inset-0 bg-green rounded-lg transform transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3"></div>
+                <img src="https://picsum.photos/seed/profile/400/400" alt="Putranto Pratama" class="absolute inset-0 w-full h-full object-cover rounded-lg filter grayscale hover:filter-none transition-all duration-300"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="app-section min-h-[50vh] py-20 md:py-28 opacity-0">
+        <div class="container mx-auto px-6 md:px-12 lg:px-24">
+          <div class="flex items-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-lightest-slate whitespace-nowrap"><span class="text-green font-mono text-xl md:text-2xl mr-2">#</span>Things I've Built</h2>
+            <div class="w-full h-px bg-lightest-navy ml-4"></div>
+          </div>
+          <div class="relative">
+            <div id="projects-carousel" class="relative min-h-[450px] md:min-h-[350px]"></div>
+            <button id="project-prev" aria-label="Previous project" class="absolute top-1/2 left-0 md:-left-16 transform -translate-y-1/2 z-20 text-slate hover:text-green p-2 rounded-full transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button id="project-next" aria-label="Next project" class="absolute top-1/2 right-0 md:-right-16 transform -translate-y-1/2 z-20 text-slate hover:text-green p-2 rounded-full transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+            <div id="project-dots" class="flex justify-center items-center space-x-3 mt-10"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="app-section min-h-[50vh] py-20 md:py-28 opacity-0">
+        <div class="container mx-auto px-6 md:px-12 lg:px-24">
+          <div class="flex items-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-lightest-slate whitespace-nowrap"><span class="text-green font-mono text-xl md:text-2xl mr-2">#</span>My Tech Stack</h2>
+            <div class="w-full h-px bg-lightest-navy ml-4"></div>
+          </div>
+          <div class="max-w-6xl mx-auto">
+            <p class="text-center text-slate mb-12">I'm always learning and exploring new technologies, but these are some of the tools and frameworks I'm most experienced with.</p>
+            <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="app-section min-h-[50vh] py-20 md:py-28 opacity-0">
+        <div class="container mx-auto px-6 md:px-12 lg:px-24">
+          <div class="flex items-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-lightest-slate whitespace-nowrap"><span class="text-green font-mono text-xl md:text-2xl mr-2">#</span>Get In Touch</h2>
+            <div class="w-full h-px bg-lightest-navy ml-4"></div>
+          </div>
+          <div class="max-w-xl mx-auto text-center">
+            <p class="text-light-slate mb-8">I'm currently open to new opportunities and collaborations. Whether you have a question or just want to say hi, my inbox is always open. I'll do my best to get back to you!</p>
+            <a href="mailto:putranto.pratama.ptr@gmail.com" class="inline-block text-green font-mono border border-green rounded-md px-8 py-4 text-lg hover:bg-green/10 transition-colors duration-300">Say Hello</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-8 px-6 md:px-12 lg:px-24">
+      <div class="container mx-auto flex flex-col items-center">
+        <div class="flex space-x-6 mb-4 md:hidden" id="footer-social-mobile"></div>
+        <p class="font-mono text-sm text-center text-slate">
+          Designed & Built by Putranto Pratama<br>&copy; <span id="footer-year"></span>
+        </p>
+      </div>
+      <div class="hidden md:block fixed bottom-0 left-12">
+        <ul id="footer-social-desktop" class="flex flex-col items-center space-y-6 after:content-[''] after:block after:w-px after:h-24 after:bg-slate after:mx-auto after:mt-6"></ul>
+      </div>
+      <div class="hidden md:block fixed bottom-0 right-12">
+        <div class="flex flex-col items-center space-y-6 after:content-[''] after:block after:w-px after:h-24 after:bg-slate after:mx-auto after:mt-6">
+          <a href="mailto:putranto.pratama.ptr@gmail.com" class="font-mono text-sm text-slate hover:text-green [writing-mode:vertical-rl] tracking-widest transition-transform transform hover:-translate-y-1">putranto.pratama.ptr@gmail.com</a>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- AI Assistant -->
+    <div id="ai-assistant">
+      <div class="fixed bottom-6 right-6 z-50">
+        <button id="ai-bubble-button" aria-label="Open chat" class="bg-green text-navy rounded-full p-4 shadow-lg hover:scale-110 transition-transform duration-200 flex items-center justify-center">
+          <svg id="ai-bubble-open-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+          <svg id="ai-bubble-close-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div id="ai-chat-window" class="fixed bottom-24 right-6 w-full max-w-sm h-[60vh] bg-light-navy rounded-lg shadow-2xl flex-col z-50 animate-fade-in-up hidden">
+        <div class="bg-lightest-navy p-4 rounded-t-lg">
+          <h3 class="text-lg font-bold text-lightest-slate">AI Portfolio Assistant</h3>
+        </div>
+        <div id="ai-chat-box" class="flex-1 p-4 overflow-y-auto space-y-4"></div>
+        <div class="p-4 border-t border-lightest-navy flex">
+          <input id="ai-input" type="text" placeholder="Ask about a project..." class="flex-1 bg-navy text-lightest-slate px-4 py-2 rounded-l-md rounded-r-none focus:outline-none focus:ring-2 focus:ring-green"/>
+          <button id="ai-send-button" class="bg-green text-navy px-4 py-2 rounded-r-md rounded-l-none font-bold disabled:opacity-50">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { GoogleGenAI } from "@google/genai";
+      import { marked } from 'marked';
+      import hljs from 'highlight.js';
+
+      // --- DATA ---
+      const NAV_LINKS = [
+        { name: 'About', href: '#about' },
+        { name: 'Projects', href: '#projects' },
+        { name: 'Skills', href: '#skills' },
+        { name: 'Contact', href: '#contact' },
+      ];
+
+      const PROJECTS = [
+        { title: 'ASTRIDAI: HR AI Assistant', description: 'Led the design and deployment of an internal AI assistant for HR services using Azure OpenAI. The platform enables proactive, on-demand services like MCU scheduling, onboarding support, and integrates with Hirohub and SAP SuccessFactors.', tags: ['AI Assistant', 'Azure OpenAI', 'Power Platform', 'MS Teams', 'SAP SuccessFactors', 'HR Tech'], imageUrl: 'https://picsum.photos/seed/astridai/800/600', repoUrl: '#' },
+        { title: 'AI-Powered Helpdesk Ticket Automation', description: 'Developed a Copilot-integrated helpdesk system using Microsoft Power Automate, reducing manual handling time from over 15 minutes per case to just 2-3 minutes. The system frees up staff for higher-value tasks by automating daily tickets.', tags: ['AI', 'Copilot', 'Power Automate', 'Helpdesk Automation', 'SAP C4C', 'OpenAI'], imageUrl: 'https://picsum.photos/seed/ai-helpdesk/800/600', repoUrl: '#' },
+        { title: 'Revamp Hirohub using SAP Workzone', description: 'Spearheaded the revamp of the Hirohub internal portal with SAP Workzone to enhance the user journey and end-to-end integration. This initiative improved user engagement, adoption rates, and the efficiency of business processes for the CHRO organization.', tags: ['SAP Workzone', 'User Experience', 'UI/UX', 'Portal Revamp', 'HR Portal', 'Integration'], imageUrl: 'https://picsum.photos/seed/hirohub-revamp/800/600', repoUrl: '#' },
+      ];
+
+      const SOCIAL_LINKS = [
+        { name: 'GitHub', url: 'https://github.com/putranto-pratama', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>' },
+        { name: 'LinkedIn', url: 'https://linkedin.com/in/putrapratama-fku', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>' },
+        { name: 'Instagram', url: '#', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>' },
+      ];
+      
+      const PHPIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-green"><path d="M12 1.5C6.201 1.5 1.5 6.201 1.5 12S6.201 22.5 12 22.5 22.5 17.799 22.5 12 17.799 1.5 12 1.5zM9.623 14.33V9.67h1.27c1.392 0 2.29.754 2.29 2.33 0 1.576-.898 2.33-2.29 2.33H9.623zm1.27 1.428h-1.27V17h3.41c1.764 0 2.97-1.005 2.97-3.112 0-1.45-.913-2.442-2.342-2.81.692-.375 1.15-1.15 1.15-2.172C15.801 6.786 14.898 6 13.313 6H8.215v11h1.408v-2.67zM18.423 14.33V9.67h1.27c1.392 0 2.29.754 2.29 2.33 0 1.576-.898 2.33-2.29 2.33h-1.27zm1.27 1.428h-1.27V17h3.41c1.764 0 2.97-1.005 2.97-3.112 0-1.99-1.205-3.113-2.97-3.113h-3.41v7.553h1.27v-2.67z"/></svg>`;
+      const PythonIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-green"><path d="M12.001 2.003c-2.484 0-4.5 2.015-4.5 4.5s2.016 4.5 4.5 4.5h6v-4.5c0-2.485-2.016-4.5-4.5-4.5zm0 1.503a3 3 0 013 3v3h-6a3 3 0 013-3zm-6 3.002v4.5c0 2.485 2.016 4.5 4.5 4.5s4.5-2.015 4.5-4.5v-6h-4.5a4.5 4.5 0 00-4.5 6zm1.5 0a3 3 0 013-3h3v6a3 3 0 01-3 3 3 3 0 01-3-6z"/></svg>`;
+      const PowerPlatformIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-green"><path d="M12.35 2H3v9.35L12.35 2zM12.35 12.65H3V22h9.35L12.35 12.65zM22 2h-9.35l9.35 9.35V2zM12.65 12.65L22 22V12.65h-9.35z"/></svg>`;
+      const SAPIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-green"><path d="M12 2L2 8.5V15.5L12 22L22 15.5V8.5L12 2ZM11 11H4.5L11 7V11ZM13 11V7L19.5 11H13ZM11 13V17L4.5 13H11ZM13 13H19.5L13 17V13Z" /></svg>`;
+      const RPAIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green"><path d="M7 7h10a2 2 0 0 1 2 2v1l1 1v3l-1 1v3a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-3l-1 -1v-3l1 -1v-1a2 2 0 0 1 2 -2z" /><path d="M10 16h4" /><circle cx="8.5" cy="11.5" r=".5" fill="currentColor" /><circle cx="15.5" cy="11.5" r=".5" fill="currentColor" /></svg>`;
+      const AIIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green"><path d="M9.5 13a1.5 1.5 0 0 1-3 0V9.5A1.5 1.5 0 0 1 8 8a1.5 1.5 0 0 1 1.5 1.5v3.5" /><path d="M14.5 13a1.5 1.5 0 0 1-3 0V9.5A1.5 1.5 0 0 1 13 8a1.5 1.5 0 0 1 1.5 1.5v3.5" /><path d="M19 12.5a2.5 2.5 0 0 1-2.5 2.5h-1.5A2.5 2.5 0 0 1 12.5 15V10" /><path d="M5 12.5A2.5 2.5 0 0 0 7.5 15h1.5A2.5 2.5 0 0 0 11.5 12.5V10" /><path d="M12 15a4 4 0 0 0-4-4h-.5" /><path d="M12 15a4 4 0 0 1 4-4h.5" /></svg>`;
+      const NodeJSIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-green"><path d="M11.998 24l-1.895-1.07-.36-19.863 1.894-1.094 2.256 1.284 8.106 4.704v9.408l-8.105 4.704-1.895-1.07zm-9.998-6.195V6.195l8.103-4.704 1.895-1.094v2.164l.36 19.863-1.895 1.07-8.103-4.704zM12 11.025l-2.072-1.214-2.072-1.214-.252 4.148 2.072 1.214 2.324 1.35v-4.284zm2.324-2.564l2.072-1.214v4.854l-2.072 1.214v-4.854z"/></svg>`;
+      const GitIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green"><path d="M18 18h-6a4 4 0 0 1-4-4v-4a4 4 0 0 1 4-4h6"></path><path d="m14 22-4-4 4-4"></path><path d="M10 2l4 4-4 4"></path></svg>`;
+      const SystemIntegrationIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green"><path d="M12 2c-3.33 0-6 2.67-6 6s2.67 6 6 6 6-2.67 6-6-2.67-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/><path d="M22 12c0-3.33-2.67-6-6-6v4c2.21 0 4 1.79 4 4h2z"/><path d="M2 12c0-3.33 2.67-6-6-6v4c-2.21 0-4 1.79-4 4H2z"/><path d="M12 22c3.33 0 6-2.67 6-6h-4c0 2.21-1.79 4-4 4v2z"/><path d="M12 2c3.33 0 6 2.67 6 6h-4c0-2.21-1.79-4-4-4V2z"/></svg>`;
+      const StakeholderIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-green"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>`;
+      const ProjectManagementIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-green"><path d="M12.01 16.51c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 13.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 8.5 12 8.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5z"/><path d="M12 11.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>`;
+      const TechLeadershipIcon = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-green"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>`;
+
+      const SKILL_CATEGORIES = [
+        { title: 'Languages & Backend', skills: [{ name: 'PHP', icon: PHPIcon() }, { name: 'Python', icon: PythonIcon() }, { name: 'Node.js', icon: NodeJSIcon() }] },
+        { title: 'Platforms & Automation', skills: [{ name: 'Power Platform', icon: PowerPlatformIcon() }, { name: 'SAP SuccessFactors', icon: SAPIcon() }, { name: 'RPA', icon: RPAIcon() }] },
+        { title: 'AI & Development Tools', skills: [{ name: 'AI & Machine Learning', icon: AIIcon() }, { name: 'Git & CI/CD', icon: GitIcon() }, { name: 'System Integration', icon: SystemIntegrationIcon() }] },
+        { title: 'Leadership', skills: [{ name: 'Stakeholder Mgmt', icon: StakeholderIcon() }, { name: 'Project Mgmt', icon: ProjectManagementIcon() }, { name: 'Technical Leadership', icon: TechLeadershipIcon() }] },
+      ];
+
+      const PORTFOLIO_DATA_CONTEXT = `You are an AI assistant for a Software Engineer named Putranto Pratama. Your name is 'Owly'. Your purpose is to answer questions about the engineer's portfolio. Be friendly, professional, and slightly enthusiastic. Here is the portfolio data in JSON format. Use this to answer all questions. About the Engineer: "An enterprise app and automation architect with deep expertise in full-stack development, platform integration, and intelligent automation. Putranto designs and implements scalable custom applications using PHP, Python, JavaScript, Node.js, and modern low-code platforms. His work spans across Microsoft Power Platform, Power Apps, Power Automate, and enterprise systems like SAP SuccessFactors. Trusted by major Indonesian enterprises, he bridges business needs with robust, secure, and user-centric technology solutions." Soft Skills: - Problem-Solving: Excels at deconstructing complex business challenges and architecting robust, scalable, and efficient technical solutions. He combines analytical thinking with deep technical expertise to overcome obstacles and deliver high-impact results. - Communication & Stakeholder Management: Adept at bridging the gap between technical and non-technical stakeholders. He can translate complex technical concepts into clear business language and effectively manage expectations to ensure project alignment and success. - Adaptability & Continuous Learning: Passionate about staying at the forefront of technology. He is a quick learner who constantly explores new tools, frameworks, and methodologies to enhance his skill set and deliver innovative solutions. - Technical Leadership: Demonstrates strong technical leadership by guiding project architecture, mentoring junior developers, and establishing best practices. He fosters a collaborative environment focused on quality and continuous improvement. Skills Data: - Languages & Backend: PHP, Python, Node.js - Platforms & Automation: Power Platform, SAP SuccessFactors, RPA - AI & Development Tools: AI & Machine Learning, Git & CI/CD, System Integration - Leadership: Stakeholder Mgmt, Project Mgmt, Technical Leadership. Projects Data: ${JSON.stringify(PROJECTS)}. Contact Information: - Email: putranto.pratama.ptr@gmail.com - LinkedIn: https://linkedin.com/in/putrapratama-fku. Instructions: - If asked about a project, summarize it and list the technologies used. - If asked about skills, list the relevant skills from the provided data, including soft skills. - If asked for contact info, provide the links/email. - Do not invent information. If you don't know the answer, say "I can't find that information in my knowledge base, but you can reach out via the contact section for more details." - Keep your answers concise and to the point.`;
+      
+      const SUGGESTED_PROMPTS = ['What are your key skills?', 'Tell me about your projects', 'How can I contact you?'];
+      
+      // --- GEMINI SERVICE ---
+      let ai;
+      try {
+        ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      } catch(e) {
+        console.error("API_KEY not found. AI assistant will be disabled.", e);
+      }
+
+      const sendMessageToGemini = async (message) => {
+        if (!ai) return "Sorry, the AI assistant is not configured. Please check the API key.";
+        try {
+          const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: message,
+            config: { systemInstruction: PORTFOLIO_DATA_CONTEXT }
+          });
+          return response.text;
+        } catch (error) {
+          console.error("Error calling Gemini API:", error);
+          return "Sorry, I'm having trouble connecting to the AI right now. Please check the console for more details and make sure the API key is configured correctly.";
+        }
+      };
+      
+      // --- APP LOGIC ---
+      document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- Header & Nav ---
+        const header = document.getElementById('header');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOpenIcon = document.getElementById('mobile-menu-open-icon');
+        const mobileMenuCloseIcon = document.getElementById('mobile-menu-close-icon');
+
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            header.classList.add('bg-light-navy/80', 'shadow-lg', 'backdrop-blur-sm');
+            header.classList.remove('bg-transparent');
+          } else {
+            header.classList.remove('bg-light-navy/80', 'shadow-lg', 'backdrop-blur-sm');
+            header.classList.add('bg-transparent');
+          }
+        });
+
+        let isMenuOpen = false;
+        mobileMenuButton.addEventListener('click', () => {
+          isMenuOpen = !isMenuOpen;
+          mobileMenu.classList.toggle('-translate-y-[150%]');
+          mobileMenuOpenIcon.classList.toggle('hidden');
+          mobileMenuCloseIcon.classList.toggle('hidden');
+        });
+        
+        const handleResumeDownload = (e) => {
+          if (!window.confirm('Are you sure about to download my resume in PDF format')) {
+            e.preventDefault();
+          }
+        };
+
+        const createNavLinks = (isMobile) => {
+          let linksHtml = NAV_LINKS.map((link, index) => `
+            <li>
+              <a href="${link.href}" class="text-lightest-slate hover:text-green transition-colors duration-300 px-3 py-2 text-sm font-mono">
+                <span class="text-green mr-1">0${index + 1}.</span>${link.name}
+              </a>
+            </li>
+          `).join('');
+          
+          const resumeClass = isMobile
+            ? "font-mono text-sm text-green border border-green rounded-md px-12 py-3 hover:bg-green/10 transition-colors duration-300"
+            : "font-mono text-sm text-green border border-green rounded-md px-4 py-2 hover:bg-green/10 transition-colors duration-300";
+            
+          linksHtml += `
+            <li>
+              <a href="./resume.pdf" target="_blank" rel="noopener noreferrer" download="Putranto_Pratama_Resume.pdf" class="${resumeClass}">Resume</a>
+            </li>`;
+            
+          return linksHtml;
+        };
+
+        document.getElementById('desktop-nav-links').innerHTML = createNavLinks(false);
+        document.getElementById('mobile-nav-links').innerHTML = createNavLinks(true);
+        
+        document.querySelectorAll('a[href="./resume.pdf"]').forEach(el => el.addEventListener('click', handleResumeDownload));
+        document.querySelectorAll('#mobile-nav-links a').forEach(el => el.addEventListener('click', () => {
+          isMenuOpen = false;
+          mobileMenu.classList.add('-translate-y-[150%]');
+          mobileMenuOpenIcon.classList.remove('hidden');
+          mobileMenuCloseIcon.classList.add('hidden');
+        }));
+
+        // --- Hero Typing Animation ---
+        const heroRoleText = document.getElementById('hero-role-text');
+        const ROLES = ["I am, software architect", "I am, hris talent solutions architect", "I am, system integrator", "I am, AI Solution Engineer"];
+        let roleIndex = 0, charIndex = 0, isDeleting = false;
+
+        const type = () => {
+          const fullText = ROLES[roleIndex];
+          if (isDeleting) {
+            heroRoleText.textContent = fullText.substring(0, charIndex - 1);
+            charIndex--;
+            if (charIndex === 0) {
+              isDeleting = false;
+              roleIndex = (roleIndex + 1) % ROLES.length;
+            }
+          } else {
+            heroRoleText.textContent = fullText.substring(0, charIndex + 1);
+            charIndex++;
+            if (charIndex === fullText.length) {
+              setTimeout(() => isDeleting = true, 2000);
+            }
+          }
+          setTimeout(type, isDeleting ? 50 : 100);
+        };
+        type();
+
+        // --- Section Animations ---
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-fade-in-up');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.app-section').forEach(el => observer.observe(el));
+        
+        // --- Projects Carousel ---
+        const projectsContainer = document.getElementById('projects-carousel');
+        const dotsContainer = document.getElementById('project-dots');
+        let currentProjectIndex = 0;
+
+        projectsContainer.innerHTML = PROJECTS.map((p, index) => `
+          <div class="project-card absolute inset-0 transition-opacity duration-500 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}" aria-hidden="${index !== 0}">
+            <div class="group relative grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              <div class="md:col-span-7 relative z-10">
+                <a href="${p.liveUrl || p.repoUrl || '#'}" target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden bg-green">
+                  <img src="${p.imageUrl}" alt="${p.title}" class="w-full h-full object-cover transform transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:-translate-x-1 group-hover:-translate-y-1 filter grayscale group-hover:filter-none"/>
+                  <div class="absolute inset-0 bg-navy/60 group-hover:bg-navy/20 transition-colors duration-300"></div>
+                </a>
+              </div>
+              <div class="md:col-span-5 md:text-right relative z-20">
+                <p class="text-green font-mono text-sm mb-2">Featured Project</p>
+                <h3 class="text-2xl font-bold text-lightest-slate hover:text-green mb-4"><a href="${p.liveUrl || p.repoUrl || '#'}" target="_blank" rel="noopener noreferrer">${p.title}</a></h3>
+                <div class="bg-light-navy p-6 rounded-md shadow-lg mb-4"><p class="text-light-slate">${p.description}</p></div>
+                <ul class="flex flex-wrap justify-end gap-x-4 gap-y-2 font-mono text-sm text-slate">${p.tags.map(tag => `<li>${tag}</li>`).join('')}</ul>
+              </div>
+            </div>
+          </div>
+        `).join('');
+        
+        dotsContainer.innerHTML = PROJECTS.map((_, index) => `<button data-index="${index}" aria-label="Go to project ${index + 1}" class="project-dot w-3 h-3 rounded-full transition-colors duration-300 ${index === 0 ? 'bg-green' : 'bg-lightest-navy hover:bg-slate'}"></button>`).join('');
+
+        const projectCards = document.querySelectorAll('.project-card');
+        const projectDots = document.querySelectorAll('.project-dot');
+
+        const updateCarousel = () => {
+            projectCards.forEach((card, index) => {
+                card.classList.toggle('opacity-100', index === currentProjectIndex);
+                card.classList.toggle('z-10', index === currentProjectIndex);
+                card.classList.toggle('opacity-0', index !== currentProjectIndex);
+                card.classList.toggle('z-0', index !== currentProjectIndex);
+                card.setAttribute('aria-hidden', index !== currentProjectIndex);
+            });
+            projectDots.forEach((dot, index) => {
+                dot.classList.toggle('bg-green', index === currentProjectIndex);
+                dot.classList.toggle('bg-lightest-navy', index !== currentProjectIndex);
+            });
+        };
+        
+        document.getElementById('project-prev').addEventListener('click', () => {
+            currentProjectIndex = (currentProjectIndex - 1 + PROJECTS.length) % PROJECTS.length;
+            updateCarousel();
+        });
+        document.getElementById('project-next').addEventListener('click', () => {
+            currentProjectIndex = (currentProjectIndex + 1) % PROJECTS.length;
+            updateCarousel();
+        });
+        projectDots.forEach(dot => dot.addEventListener('click', (e) => {
+            currentProjectIndex = parseInt(e.target.dataset.index);
+            updateCarousel();
+        }));
+
+        // --- Skills ---
+        const skillsContainer = document.getElementById('skills-container');
+        skillsContainer.innerHTML = SKILL_CATEGORIES.map(category => `
+          <div class="bg-light-navy p-6 rounded-lg shadow-lg flex flex-col">
+            <h3 class="text-xl font-bold text-lightest-slate text-center mb-6">${category.title}</h3>
+            <div class="grid grid-cols-3 gap-6 mt-auto">
+              ${category.skills.map(skill => `
+                <div class="flex flex-col items-center justify-center p-2 text-center bg-navy rounded-md transition-transform duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-sm hover:shadow-lg">
+                  ${skill.icon}
+                  <span class="mt-2 text-xs font-mono text-slate">${skill.name}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('');
+
+        // --- Footer ---
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+        const socialHtml = SOCIAL_LINKS.map(link => `
+          <li>
+            <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-slate hover:text-green transition-transform transform hover:-translate-y-1 block">${link.icon}</a>
+          </li>
+        `).join('');
+        const socialHtmlMobile = SOCIAL_LINKS.map(link => `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-slate hover:text-green transition-colors duration-300">${link.icon}</a>`).join('');
+
+        document.getElementById('footer-social-desktop').innerHTML = socialHtml;
+        document.getElementById('footer-social-mobile').innerHTML = socialHtmlMobile;
+        
+        // --- AI Assistant ---
+        const aiBubbleButton = document.getElementById('ai-bubble-button');
+        const aiBubbleOpenIcon = document.getElementById('ai-bubble-open-icon');
+        const aiBubbleCloseIcon = document.getElementById('ai-bubble-close-icon');
+        const aiChatWindow = document.getElementById('ai-chat-window');
+        const aiChatBox = document.getElementById('ai-chat-box');
+        const aiInput = document.getElementById('ai-input');
+        const aiSendButton = document.getElementById('ai-send-button');
+
+        let isAiOpen = false;
+        let isLoading = false;
+        
+        marked.setOptions({
+            highlight: (code, lang) => {
+                const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                return hljs.highlight(code, { language }).value;
+            },
+            langPrefix: 'hljs language-', breaks: true, gfm: true,
+        });
+
+        const addMessage = (sender, text, isHtml = false) => {
+            const msgContainer = document.createElement('div');
+            msgContainer.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+            const msgBubble = document.createElement('div');
+            msgBubble.className = `max-w-xs lg:max-w-md px-4 py-2 rounded-2xl text-sm ${sender === 'user' ? 'bg-green text-navy' : 'bg-lightest-navy text-lightest-slate'}`;
+            
+            if (isHtml) {
+                msgBubble.innerHTML = `<div class="ai-response-content">${text}</div>`;
+            } else {
+                msgBubble.textContent = text;
+            }
+            
+            msgContainer.appendChild(msgBubble);
+            aiChatBox.appendChild(msgContainer);
+            aiChatBox.scrollTop = aiChatBox.scrollHeight;
+        };
+        
+        const showLoadingIndicator = () => {
+            const indicator = document.createElement('div');
+            indicator.id = 'loading-indicator';
+            indicator.className = 'flex justify-start';
+            indicator.innerHTML = `<div class="max-w-xs lg:max-w-md px-4 py-2 rounded-2xl bg-lightest-navy text-lightest-slate">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-slate rounded-full animate-pulse"></div>
+                    <div class="w-2 h-2 bg-slate rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                    <div class="w-2 h-2 bg-slate rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                </div>
+            </div>`;
+            aiChatBox.appendChild(indicator);
+            aiChatBox.scrollTop = aiChatBox.scrollHeight;
+        };
+
+        const hideLoadingIndicator = () => {
+            const indicator = document.getElementById('loading-indicator');
+            if (indicator) indicator.remove();
+        };
+
+        const addSuggestionPrompts = () => {
+            const container = document.createElement('div');
+            container.id = 'suggestion-prompts';
+            container.className = 'pt-2 flex flex-col items-start space-y-2';
+            SUGGESTED_PROMPTS.forEach(prompt => {
+                const button = document.createElement('button');
+                button.textContent = prompt;
+                button.className = 'bg-lightest-navy text-slate px-3 py-2 text-left text-sm rounded-lg border border-slate/20 hover:border-green hover:text-green transition-colors duration-200';
+                button.onclick = () => submitAiMessage(prompt);
+                container.appendChild(button);
+            });
+            aiChatBox.appendChild(container);
+        };
+        
+        const submitAiMessage = async (message) => {
+            if (!message.trim() || isLoading) return;
+            const suggestionPrompts = document.getElementById('suggestion-prompts');
+            if (suggestionPrompts) suggestionPrompts.remove();
+
+            addMessage('user', message);
+            aiInput.value = '';
+            isLoading = true;
+            aiSendButton.disabled = true;
+            aiInput.disabled = true;
+            showLoadingIndicator();
+
+            try {
+                const aiResponse = await sendMessageToGemini(message);
+                const parsedHtml = marked.parse(aiResponse);
+                addMessage('ai', parsedHtml, true);
+            } catch (e) {
+                addMessage('ai', "<p>Sorry, I'm having trouble connecting right now.</p>", true);
+            } finally {
+                isLoading = false;
+                aiSendButton.disabled = false;
+                aiInput.disabled = false;
+                hideLoadingIndicator();
+                aiInput.focus();
+            }
+        };
+
+        aiBubbleButton.addEventListener('click', () => {
+            isAiOpen = !isAiOpen;
+            aiChatWindow.classList.toggle('hidden');
+            aiChatWindow.classList.toggle('flex');
+            aiBubbleOpenIcon.classList.toggle('hidden');
+            aiBubbleCloseIcon.classList.toggle('hidden');
+            aiBubbleButton.setAttribute('aria-label', isAiOpen ? 'Close chat' : 'Open chat');
+        });
+        
+        aiSendButton.addEventListener('click', () => submitAiMessage(aiInput.value));
+        aiInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') submitAiMessage(aiInput.value);
+        });
+        
+        // Initial AI message
+        addMessage('ai', "<p>Hi! I'm Owly, the AI assistant for this portfolio. Ask me anything about Putranto's skills or projects!</p>", true);
+        addSuggestionPrompts();
+
+      });
+    </script>
   </body>
 </html>
