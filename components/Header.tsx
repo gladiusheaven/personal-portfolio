@@ -23,9 +23,9 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
           <a
             href={link.href}
             onClick={() => setIsMenuOpen(false)}
-            className="text-lightest-slate hover:text-green transition-colors duration-300 px-3 py-2 text-sm font-mono"
+            className="text-lightest-slate hover:text-accent transition-colors duration-300 px-3 py-2 text-sm font-mono"
           >
-            <span className="text-green mr-1">0{index + 1}.</span>
+            <span className="text-accent mr-1">0{index + 1}.</span>
             {link.name}
           </a>
         </li>
@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
       }`}
     >
       <nav className="container mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between h-20">
-        <div className="text-green text-2xl font-bold font-mono">
+        <div className="text-accent text-2xl font-bold font-mono">
           <a href="#">PP</a>
         </div>
 
@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
               target="_blank" 
               rel="noopener noreferrer" 
               download="Putranto_Pratama_Resume.pdf" 
-              className="font-mono text-sm text-green border border-green rounded-md px-4 py-2 hover:bg-green/10 transition-colors duration-300"
+              className="font-mono text-sm text-accent border border-accent rounded-md px-4 py-2 hover:bg-accent/10 transition-colors duration-300"
               onClick={handleResumeDownload}
             >
               Resume
@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
 
         {/* Mobile Nav Button */}
         <div className="md:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-green focus:outline-none">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-accent focus:outline-none">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               {isMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -89,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
               target="_blank" 
               rel="noopener noreferrer" 
               download="Putranto_Pratama_Resume.pdf" 
-              className="font-mono text-sm text-green border border-green rounded-md px-12 py-3 hover:bg-green/10 transition-colors duration-300"
+              className="font-mono text-sm text-accent border border-accent rounded-md px-12 py-3 hover:bg-accent/10 transition-colors duration-300"
               onClick={handleResumeDownload}
             >
               Resume

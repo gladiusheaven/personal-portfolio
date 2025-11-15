@@ -84,7 +84,7 @@ const AIAssistant: React.FC = () => {
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-green text-navy rounded-full p-4 shadow-lg hover:scale-110 transition-transform duration-200 flex items-center justify-center"
+          className="bg-accent text-navy rounded-full p-4 shadow-lg hover:scale-110 transition-transform duration-200 flex items-center justify-center"
           aria-label={isOpen ? 'Close chat' : 'Open chat'}
         >
           {isOpen ? (
@@ -108,7 +108,7 @@ const AIAssistant: React.FC = () => {
           <div ref={chatBoxRef} className="flex-1 p-4 overflow-y-auto space-y-4">
             {messages.map((msg, index) => (
               <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${msg.sender === 'user' ? 'bg-green text-navy' : 'bg-lightest-navy text-lightest-slate'}`}>
+                <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${msg.sender === 'user' ? 'bg-accent text-navy' : 'bg-lightest-navy text-lightest-slate'}`}>
                    {msg.sender === 'user' ? 
                     <p className="text-sm">{msg.text}</p> :
                     <div className="text-sm ai-response-content" dangerouslySetInnerHTML={{ __html: msg.text }} />
@@ -122,7 +122,7 @@ const AIAssistant: React.FC = () => {
                    <button
                     key={index}
                     onClick={() => handleSuggestionClick(prompt)}
-                    className="bg-lightest-navy text-slate px-3 py-2 text-left text-sm rounded-lg border border-slate/20 hover:border-green hover:text-green transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-lightest-navy text-slate px-3 py-2 text-left text-sm rounded-lg border border-slate/20 hover:border-accent hover:text-accent transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={isLoading}
                   >
                     {prompt}
@@ -134,9 +134,10 @@ const AIAssistant: React.FC = () => {
               <div className="flex justify-start">
                 <div className="max-w-xs lg:max-w-md px-4 py-2 rounded-2xl bg-lightest-navy text-lightest-slate">
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-slate rounded-full animate-pulse"></div>
-                    <div className="w-2 h-2 bg-slate rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
-                    <div className="w-2 h-2 bg-slate rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
+                    <span className="text-sm text-slate/80 mr-1">Owly is typing</span>
+                    <div className="w-1.5 h-1.5 bg-slate rounded-full animate-typing-bounce" style={{animationDelay: '0s'}}></div>
+                    <div className="w-1.5 h-1.5 bg-slate rounded-full animate-typing-bounce" style={{animationDelay: '0.1s'}}></div>
+                    <div className="w-1.5 h-1.5 bg-slate rounded-full animate-typing-bounce" style={{animationDelay: '0.2s'}}></div>
                   </div>
                 </div>
               </div>
@@ -149,12 +150,12 @@ const AIAssistant: React.FC = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Ask about a project..."
-              className="flex-1 bg-navy text-lightest-slate px-4 py-2 rounded-l-md rounded-r-none focus:outline-none focus:ring-2 focus:ring-green"
+              className="flex-1 bg-navy text-lightest-slate px-4 py-2 rounded-l-md rounded-r-none focus:outline-none focus:ring-2 focus:ring-accent"
               disabled={isLoading}
             />
             <button
               onClick={handleSend}
-              className="bg-green text-navy px-4 py-2 rounded-r-md rounded-l-none font-bold disabled:opacity-50"
+              className="bg-accent text-navy px-4 py-2 rounded-r-md rounded-l-none font-bold disabled:opacity-50"
               disabled={isLoading || !input.trim()}
             >
               Send

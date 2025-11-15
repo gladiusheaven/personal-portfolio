@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
     <div className="container mx-auto px-6 md:px-12 lg:px-24">
       <section id="hero" className="min-h-screen flex flex-col justify-center animate-fade-in-up" style={{ animationDelay: '100ms' }}>
         <div className="max-w-4xl">
-          <p className="text-green font-mono mb-4 text-md">Hi, my name is</p>
+          <p className="text-accent font-mono mb-4 text-md">Hi, my name is</p>
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-lightest-slate">
             Putranto Pratama.
           </h1>
@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
           <div className="mt-12">
             <a
               href="#projects"
-              className="text-green font-mono border border-green rounded-md px-8 py-4 text-lg hover:bg-green/10 transition-colors duration-300"
+              className="text-accent font-mono border border-accent rounded-md px-8 py-4 text-lg hover:bg-accent/10 transition-colors duration-300"
             >
               Check out my work!
             </a>

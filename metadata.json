@@ -1,5 +1,5 @@
 {
-  "name": "React Engineer Portfolio",
-  "description": "A personal portfolio website for a senior frontend React engineer, showcasing skills, projects, and an integrated AI assistant powered by the Gemini API.",
+  "name": "profile-personal-gemini",
+  "description": "A personal portfolio website for showcasing skills, projects, and an integrated AI assistant powered by the Gemini API.",
   "requestFramePermissions": []
 }

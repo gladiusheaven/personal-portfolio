@@ -10,8 +10,10 @@ const Contact: React.FC = () => {
           I'm currently open to new opportunities and collaborations. Whether you have a question or just want to say hi, my inbox is always open. I'll do my best to get back to you!
         </p>
         <a 
-          href="mailto:putranto.pratama.ptr@gmail.com"
-          className="inline-block text-green font-mono border border-green rounded-md px-8 py-4 text-lg hover:bg-green/10 transition-colors duration-300"
+          href="https://wa.me/6281513357006"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block text-accent font-mono border border-accent rounded-md px-8 py-4 text-lg hover:bg-accent/10 transition-colors duration-300"
         >
           Say Hello
         </a>

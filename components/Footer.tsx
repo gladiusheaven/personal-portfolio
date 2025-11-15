@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto flex flex-col items-center">
         <div className="flex space-x-6 mb-4 md:hidden">
           {socialLinks.map(link => (
-            <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="text-slate hover:text-green transition-colors duration-300">
+            <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="text-slate hover:text-accent transition-colors duration-300">
               {link.icon}
             </a>
           ))}
@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
         <ul className="flex flex-col items-center space-y-6 after:content-[''] after:block after:w-px after:h-24 after:bg-slate after:mx-auto after:mt-6">
           {socialLinks.map(link => (
             <li key={link.name}>
-              <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-slate hover:text-green transition-transform transform hover:-translate-y-1 block">
+              <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-slate hover:text-accent transition-transform transform hover:-translate-y-1 block">
                 {link.icon}
               </a>
             </li>
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
        {/* Fixed Email Link for Desktop */}
       <div className="hidden md:block fixed bottom-0 right-12">
         <div className="flex flex-col items-center space-y-6 after:content-[''] after:block after:w-px after:h-24 after:bg-slate after:mx-auto after:mt-6">
-            <a href="mailto:putranto.pratama.ptr@gmail.com" className="font-mono text-sm text-slate hover:text-green [writing-mode:vertical-rl] tracking-widest transition-transform transform hover:-translate-y-1">
+            <a href="mailto:putranto.pratama.ptr@gmail.com" className="font-mono text-sm text-slate hover:text-accent [writing-mode:vertical-rl] tracking-widest transition-transform transform hover:-translate-y-1">
                 putranto.pratama.ptr@gmail.com
             </a>
         </div>

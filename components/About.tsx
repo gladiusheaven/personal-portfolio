@@ -19,7 +19,7 @@ const About: React.FC = () => {
         </div>
         <div className="md:col-span-2 flex justify-center items-start">
           <div className="relative w-64 h-64 group">
-            <div className="absolute inset-0 bg-green rounded-lg transform transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3"></div>
+            <div className="absolute inset-0 bg-accent rounded-lg transform transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3"></div>
             <img 
               src="https://picsum.photos/seed/profile/400/400" 
               alt="Putranto Pratama" 
